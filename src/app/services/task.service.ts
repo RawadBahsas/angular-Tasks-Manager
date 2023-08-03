@@ -12,7 +12,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = "http://localhost:5000/tasks"
+  //private apiUrl = "http://localhost:5000/tasks"
+  private apiUrl = "http://localhost:5234/Tasks"
 
   constructor(private http: HttpClient) {
 
@@ -23,12 +24,12 @@ export class TaskService {
     // return tasks;
   }
   deleteTask(task: Task): Observable<Task> {
-    const url = `${this.apiUrl}/${task.id}`;
+    const url = `${this.apiUrl}?taskId=${task.id}`;
     return this.http.delete<Task>(url);
   }
 
   toggleReminder(task: Task): Observable<Task> {
-    const url = `${this.apiUrl}/${task.id}`;
+    const url = `${this.apiUrl}?taskId=${task.id}`;
     return this.http.put<Task>(url, task, httpOptions);
   }
 
